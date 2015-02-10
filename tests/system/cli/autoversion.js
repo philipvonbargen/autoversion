@@ -1,9 +1,9 @@
 #!/usr/bin/env node
 
 var fs          = require('fs');
-var autoversion = require('../lib/autoversion');
+var autoversion = require('../../../lib/autoversion');
 
-var files = ['./package.json', './package2.json', './package3.json'];
+var files = ['./tmp/package.json'];
 
 var arrayUnique = function(a) {
   return a.reduce(function(p, c) {
@@ -22,7 +22,7 @@ autoversion.read = function() {
   versions = arrayUnique(versions);
 
   if (versions.length > 1) {
-    console.error( 'Version mismatch, aborting!' );
+    console.error('Version mismatch, aborting!');
     return;
   }
 
@@ -35,7 +35,7 @@ autoversion.write = function(currentVersion, nextVersion) {
     var content = require(file);
     content.version = nextVersion;
 
-    fs.writeFile(file, JSON.stringify(content, null, "  "), function(err) {
+    fs.writeFile(file, JSON.stringify(content), function(err) {
       if (err) {
         console.error(err);
         return;
