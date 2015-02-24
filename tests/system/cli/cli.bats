@@ -18,15 +18,13 @@ setup() {
 }
 
 @test "cli: prints usage" {
-  EXPECTED_OUTPUT="Usage: autoversion version|patch|minor|major"
-
   # running autoversion with no argument
   run ./autoversion.js
-  [ "$output" = "$EXPECTED_OUTPUT" ]
+  [ "$output" = "Usage: autoversion version|patch|minor|major" ]
 
   # running autoversion with random, non-supported argument
   run ./autoversion.js help
-  [ "$output" = "$EXPECTED_OUTPUT" ]
+  [ "$output" = "Usage: autoversion version|patch|minor|major" ]
 }
 
 @test "cli: prints version" {

@@ -1,17 +1,11 @@
 #!/usr/bin/env node
 
+'use strict';
+
 var fs          = require('fs');
 var autoversion = require('../../../lib/autoversion');
 
 var files = ['./tmp/package.json'];
-
-var arrayUnique = function(a) {
-  return a.reduce(function(p, c) {
-    if (p.indexOf(c) < 0) p.push(c);
-    return p;
-  }, []);
-};
-
 
 autoversion.read = function() {
   var versions = [];
@@ -19,7 +13,7 @@ autoversion.read = function() {
     versions.push( require(file).version );
   });
 
-  versions = arrayUnique(versions);
+  versions = autoversion.utils.arrayUnique(versions);
 
   if (versions.length > 1) {
     console.error('Version mismatch, aborting!');
