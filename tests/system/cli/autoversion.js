@@ -29,7 +29,7 @@ autoversion.write = function(currentVersion, nextVersion) {
     var content = require(file);
     content.version = nextVersion;
 
-    fs.writeFile(file, JSON.stringify(content), function(err) {
+    fs.writeFile(file, JSON.stringify(content, null, '  '), function(err) {
       if (err) {
         console.error(err);
         return;
@@ -42,7 +42,7 @@ autoversion.write = function(currentVersion, nextVersion) {
   });
 };
 
-autoversion.on('any', function(version) { console.log('Increased ANY version. New version: ' + version) });
-autoversion.on('patch', function(version) { console.log('Increased PATCH version. New version: ' + version) });
-autoversion.on('minor', function(version) { console.log('Increased MINOR version. New version: ' + version) });
-autoversion.on('major', function(version) { console.log('Increased MAJOR version. New version: ' + version) });
+autoversion.on('any', function(version) { console.log('Incremented ANY version. New version: ' + version) });
+autoversion.on('patch', function(version) { console.log('Incremented PATCH version. New version: ' + version) });
+autoversion.on('minor', function(version) { console.log('Incremented MINOR version. New version: ' + version) });
+autoversion.on('major', function(version) { console.log('Incremented MAJOR version. New version: ' + version) });
